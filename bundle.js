@@ -250,7 +250,7 @@ const error=(code,message)=>Object.assign(new Error(message),{code});
 const BASE='https://api.github.com/repos/amyao180009-ctrl/kewaike';
 function base64(text){const bytes=new TextEncoder().encode(text);let binary='';for(const b of bytes)binary+=String.fromCharCode(b);return btoa(binary);}
 class GitHub{
-  constructor({token,fetch=globalThis.fetch}){this.token=token;this.fetch=fetch;}
+  constructor({token,fetch=globalThis.fetch}){this.token=token;this.fetch=(...args)=>fetch(...args);}
   async request(path,{method='GET',body,missing=false}={}){
     const token=this.token();if(!token)throw error('LOCKED','请先在备份设置中输入令牌或解锁');
     const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
