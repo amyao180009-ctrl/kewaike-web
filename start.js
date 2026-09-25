@@ -1,1 +1,3 @@
 requireModule('web/app.js').start().then(()=>window.startWeb()).catch(e=>{const p=document.createElement('p');p.className='fatal';p.textContent='账本未能打开：'+e.message+'。请勿清理浏览器数据；先检查存储空间或更换支持的浏览器。';document.getElementById('screen').replaceChildren(p);});
+// Follow the visible viewport when a phone keyboard opens, without moving focus.
+if(window.visualViewport){const adjust=()=>{document.documentElement.style.setProperty('--keyboard-height',Math.round(window.visualViewport.height)+'px');const active=document.activeElement;if(active&&/^(INPUT|TEXTAREA)$/.test(active.tagName))requestAnimationFrame(()=>active.scrollIntoView({block:'nearest'}));};window.visualViewport.addEventListener('resize',adjust);adjust();}
