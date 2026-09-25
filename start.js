@@ -1,0 +1,1 @@
+requireModule('web/app.js').start().then(()=>window.startWeb()).catch(e=>{const p=document.createElement('p');p.className='fatal';p.textContent='账本未能打开：'+e.message+'。请勿清理浏览器数据；先检查存储空间或更换支持的浏览器。';document.getElementById('screen').replaceChildren(p);});
